@@ -17,18 +17,41 @@ rel="stylesheet">
 <div class="card-body">
 <form name="submit-to-google-sheet">
 <div class="mb-3">
-<input name="fullname" type="text" class="form-control"
+<input name="NAME" type="text" class="form-control"
 placeholder="Fullname" required>
 </div>
+  <div class="mb-3">
+<input name="DOB" type="date" class="form-control" required>
+</div>
+  <div class="mb-3">
+<input name="ADDRESS" type="text" class="form-control"
+placeholder="enter your address" required>
+    <textarea></textarea>
+</div>
 <div class="mb-3">
-<input name="email" type="email" class="form-control"
+<input name="EMAIL" type="email" class="form-control"
 placeholder="Email" required>
 </div>
-<button type="submit" class="btn btn-primary">Send</button>
+  <div class="mb-3">
+<input name="PHONE NUMBER" type="number" class="form-control"
+placeholder="enter your phone number" required>
+</div>
+<button type="submit" class="btn btn-primary">SUBMIT</button>
+<button type="reset" class="btn btn-primary">RESET</button>
 </form>
 </div>
 </div>
 </div>
+<script>
+const scriptURL = 'https://script.google.com/macros/s/AKfycbwdywJsQNCXk1I_k0ABwQMkAg4MIWBWyqkuEODbY6EtASqjyPuv1YM2iEEGfVGPJ5UDsg/exec'
+const form = document.forms['submit-to-google-sheet']
+form.addEventListener('submit', e => {
+e.preventDefault()
+fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+.then(response => console.log('Success!', response))
+.catch(error => console.error('Error!', error.message))
+})
+</script>
 <script
 src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
 ></script>
